@@ -1,0 +1,47 @@
+
+<div style="min-height:80vh; display:flex; justify-content:center; align-items:center; background:#f8f9fa; padding:20px;">
+  <div style="background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:100%; max-width:800px;">
+    <h2 style="text-align:center; margin-bottom:20px; color:#222;">Message Details</h2>
+
+    <p><strong>From:</strong> {{ message.sender }}</p>
+    <p><strong>Subject:</strong> {{ message.subject }}</p>
+    <p><strong>Time:</strong> {{ message.timestamp }}</p>
+    <p><strong>Message:</strong><br> {{ message.body }}</p>
+
+    {% if message.file %}
+      <p><strong>Attachment:</strong> {{ message.file }}</p>
+
+      {% if threat == 1 %}
+        <div style="padding:15px; background:#f8d7da; color:#721c24; border-radius:8px; margin-bottom:12px;">
+          ⚠️ <strong>Potential Malware detected</strong> — file is blocked by default.
+        </div>
+
+        <div style="text-align:center; margin-bottom:12px;">
+          <a href="{{ url_for('force_open', mid=message.id) }}" 
+             style="padding:10px 25px; background:#ff9800; color:#fff; border-radius:20px; text-decoration:none; font-weight:bold;">
+            Open Anyway
+          </a>
+        </div>
+
+      {% else %}
+        <div style="padding:15px; background:#d4edda; color:#155724; border-radius:8px; margin-bottom:12px;">
+          ✅ <strong>No high-risk indicators found.</strong> File allowed for download.
+        </div>
+
+        <div style="text-align:center; margin-bottom:12px;">
+          <a href="{{ url_for('download_file', filename=message.file) }}" 
+             style="padding:10px 25px; background:#28a745; color:#fff; border-radius:20px; text-decoration:none; font-weight:bold;">
+            Download File
+          </a>
+        </div>
+      
+      <p><em>No file attached.</em></p>
+  
+
+    <div style="margin-top:30px; text-align:center;">
+      <a href="{{ url_for('compose', reply_to=message.id) }}" style="padding:10px 25px; background:#007bff; color:#fff; border-radius:20px; text-decoration:none; font-weight:bold;">Reply</a>
+    </div>
+
+  </div>
+</div>
+
