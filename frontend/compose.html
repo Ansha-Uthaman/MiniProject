@@ -1,0 +1,36 @@
+
+<div class="card" style="max-width:700px; margin:0 auto;">
+  <h2 class="center">Compose Message</h2>
+  <form method="post" enctype="multipart/form-data">
+    <div class="form-row">
+      <label>To</label>
+      <select name="receiver_id" required>
+        <option value="" disabled selected>Select recipient</option>
+        {% for uid, email in users %}
+          <option value="{{ uid }}">{{ email }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label>Subject</label>
+      <input type="text" name="subject" placeholder="Subject">
+    </div>
+
+    <div class="form-row">
+      <label>Message</label>
+      <textarea name="body" rows="6" placeholder="Type your message..."></textarea>
+    </div>
+
+    <div class="form-row">
+      <label>Attach File</label>
+      <input type="file" name="file">
+      <p class="muted" style="margin-top:6px;">Allowed: txt, pdf, png, jpg, jpeg, mp4, mp3, docx</p>
+    </div>
+
+    <div class="center">
+      <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+  </form>
+</div>
+
