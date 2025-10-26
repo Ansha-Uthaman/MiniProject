@@ -1,0 +1,25 @@
+<div class="card" style="max-width:520px; margin:0 auto;">
+  <h2 class="center">Registration</h2>
+  <form method="POST" action="{{ url_for('register') }}">
+    <div class="form-row">
+      <label>First name</label>
+      <input type="text" name="first_name" required>
+    </div>
+    <div class="form-row">
+      <label>Last name</label>
+      <input type="text" name="last_name" required>
+    </div>
+    <div class="form-row">
+      <label>Email</label>
+      <input type="email" name="email" required>
+    </div>
+    <div class="form-row">
+      <label>Password</label>
+      <input type="password" name="password" required>
+    </div>
+    <div class="center">
+      <button class="btn btn-primary" type="submit">Register Now</button>
+    </div>
+  </form>
+</div>
+
