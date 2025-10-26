@@ -1,0 +1,25 @@
+
+<div class="card">
+  <h2>Inbox</h2>
+  {% if messages %}
+    <table>
+      <thead>
+        <tr><th>From</th><th>Subject</th><th>Time</th><th>Attachment</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        {% for msg in messages %}
+          <tr>
+            <td>{{ msg.sender }}</td>
+            <td>{{ msg.subject or "-" }}</td>
+            <td>{{ msg.timestamp }}</td>
+            <td>{{ msg.file or "-" }}</td>
+            <td><a class="btn btn-primary" href="{{ url_for('view_message', mid=msg.id) }}">Open</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">No messages in your inbox.</p>
+  {% endif %}
+</div>
+
